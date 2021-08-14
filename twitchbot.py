@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup as soup
 import requests
 import re 
 
-token = "oauth:thisisnotarealoathtoken" # Oauth2 token that you generate
+token = "oauth:thisisnotarealoathtoken" # Oauth2 token that you generate 
 name = "NancyBot" # The bots username
 channel = "Placeholder" # Twitch channel you are targetting
 
@@ -14,11 +14,13 @@ bot = commands.Bot(
             prefix='~',
             initial_channels=[channel])
 
+wikiname = "" # the name of the specific wiki
+url = "https://" + wikiname + ".wiki.fextralife.com/" # URL for the fextralife domain
+
 # Register an event with the bot
 @bot.event
 async def event_ready():
     print(f'Ready | {bot.nick}')
-
 
 @bot.event
 async def event_message(message):
@@ -38,9 +40,6 @@ async def event_message(self, message):
 @bot.command(name='wiki', aliases=['##'])
 async def get_wikipage(ctx):
     words = ctx.message.content.split(' ')[1:]
-
-
-    url = "https://finalfantasy7remake.wiki.fextralife.com/" # Base URL for the fextralife wiki
 
     poststring = "" 
     for x in words:
